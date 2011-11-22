@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Payment | {{store.name}}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="{{theme.files}}/bootstrap-1.2.0.min.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons - - >
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    < ! - - -->
+    
+    <style type="text/css">
+    
+    	#cartsummary { font-size: 1.1em; }
+    	small { font-size: 0.8em; }
+    </style>
+  </head>
+
+  <body style="padding-top: 40px;">
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <h3><a href="/">{{store.name}}</a></h3>
+          <ul class="nav">
+            <li><a href="/cart/">Cart</a></li>
+            <li><a href="/checkout/">Shipping</a></li>
+            <li class="active"><a href="/payment/">Payment</a></li>
+            <li><a href="#">Receipt</a></li>
+          </ul>
+          <ul class="nav secondary-nav">
+            <li><a href="/shop/">Back to Store</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+		<div class="hero-unit">
+			<h1>Payment / {{cart.totalprice | money_with_currency}}</h1>
+			<!-- p style="margin-top: 1em">Your Cart has {{cart.items.count}} Item/s, {{cart.totalprice | money_with_currency}}</p -->
+		</div>
+  	
+  		<div class="page-header">
+    		<h1>How would you like to pay?</h1>
+  		</div>
+  	
+		<section>
+			<div class="row">
+		    	<div class="span12 columns">
+					<form action="/payment" method="post">
+						<fieldset>
+							<div class="clearfix">
+		            	        <label title="Paypal &amp; Credit Card">Paypal &amp; Credit Card <input type="radio" id="paymentmethod_online" name="paymentmethod" value="paypal" class="radio" title="Paypal &amp; Credit Card" /></label>
+                    			<div class="input">
+									<p>Payments with Paypal are safe, secure &amp; encrypted, you don't need a paypal account to use &amp; your details are never stored.</p>
+									<p><a href="#" onclick="javascript:window.open('https://www.paypal.com/au/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=700, height=350'); return false;" title="Click to Read More...">What is PayPal?</a></p>
+	                	    	</div>
+                    		</div>
+                    		
+                    		<hr>
+						
+                			<!-- #IF {{snippets.payment-methods}} -->
+								{{snippets.payment-methods}}
+							<!-- #ELSE -->
+	                	    <div class="clearfix">
+                    	    	<label title="Email Inquiry Order">Email Inquiry <input type="radio" name="paymentmethod" value="email_inquiry" class="radio" title="Email Inquiry Order" /></label>
+                    	    	<div class="input">
+	                	        	<p>We understand that paying online can be a little daunting for some people, and we are happy for you to place your order without payment and we will get you back to complete the purchase.</p>
+                    	    	</div>
+                    	    </div>
+    					
+							<!-- #ENDIF -->
+							
+							<br>
+	            		            
+							<div class="actions">
+							    <input type="submit" class="btn primary large" value="Place Your Order">
+							</div>
+						</fieldset>
+	    			</form>
+		    	</div><!-- /.span12 -->
+		    
+		    <div class="span4 columns">
+    			<table id="cartsummary">
+    				<thead>
+    					<tr>
+    						<th colspan="2">Summary</th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					<tr>
+    						<td>Subtotal <small>({{cart.taxesincluded | if('incl','ex')}}. tax)</small></td>
+    						<td>{{cart.subtotal | money}}</td>
+    					</tr>
+    					<tr>
+    						<td>Shipping <small>{{cart.shipping.carrier}}</small></td>
+    						<td>{{cart.shipping.cost | money}}</td>
+    					</tr>
+    					<!-- #IF {{cart.coupon}} -->
+                    	<tr>
+                    	    <td>{{cart.coupon.name}} ({{cart.discount.percentage}}%)</td>
+                    	    <td>{{cart.discount.amount | money}}</td>
+                    	</tr>
+                    	<!-- #ENDIF -->
+                    	<!-- #IF {{cart.taxesincluded | not}} -->
+                    	<tr>
+                    	    <td>Tax ({{cart.tax.percentage}}%)</td>
+                    	    <td>{{cart.tax.amount | money}}</td>
+                    	</tr>
+                    	<!-- #ENDIF -->
+                    	<tr>
+                    	    <td>Order Total <abbr class="currency" title="{{store.currency_name}}">{{store.currency}}</abbr></td>
+                    	    <td>{{cart.totalprice | money}}</td>
+                    	</tr>
+						
+                    	<!-- #IF {{cart.taxesincluded}} -->
+                    	<tr>
+                    	    <td><small>Includes Tax ({{cart.tax.percentage}}%)</small></td>
+                    	    <td><small>{{cart.tax.amount | money}}</small></td>
+                    	</tr>
+                    	<!-- #ENDIF -->
+                    </tbody>
+    			</table>
+
+                <!-- #IF {{cart.shippingrequired}} -->
+                    <!-- #IF {{cart.shippingaddress.country}} -->
+                    <p class="shipping-msg">Currently Shipping {{cart.items.count}} <em>Item(s)</em> to {{cart.shippingaddress.country}} <!-- #IF {{cart.shippingaddress.postcode}} -->({{cart.shippingaddress.postcode}})<!-- #ENDIF -->, with <strong>{{cart.shipping.carrier}}</strong>.</p>
+                    <!-- #ENDIF -->            
+                <!-- #ENDIF -->    
+    
+			</div><!-- /.span4 -->
+	
+		</div><!-- /.row -->
+	</section>
+
+
+      <footer>
+        <p>&copy; {{store.name}} 2011 (All Prices {{store.currency_name}}) - <a href="#">Back to top</a></p>
+        <p class="cartching">Powered by <a href="http://cartching.com/" title="Make yourself a FREE website to sell your products, be up and running in 5 minutes!  Its quick and simple with secure online payments.  No lock-in contracts, No knowledge of web page design or website hosting required. Advanced features also available from $30/month.">Cartching</a></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

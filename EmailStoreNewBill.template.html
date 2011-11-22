@@ -1,0 +1,23 @@
+<html>
+<head>
+	<style type="text/css">
+		body { margin:0; padding: 2em; }
+		td, p, li { font:10pt Arial; color:#000000; }
+		h2,h3 { font:14pt Arial; color:#444444; font-weight:normal; }
+	</style>
+</head>
+<body style="margin:0;">
+
+	<h2>Hello {{bill.customer}}</h2>
+
+	<p>You have just been billed for your website at <a href="{{store.url}}">{{store.url}}</a></p>
+
+	<p><strong>{{store.plan}} Plan - 30 Days,  {{bill.totalprice | money}}</strong></p>
+
+	<p>This bill covers the period from {{bill.startdate | date('MMM d yyyy') }} to {{bill.enddate | date('MMM d yyyy')}}, you can see this new bill by logging into your 
+		website admin at <a href="{{store.url}}{{store.admin}}">{{store.url}}{{store.admin}}</a> or you can <a href="{{bill.payurl}}">pay your bill here</a></p>
+
+	<p>Thank you very much!</p>
+
+</body>
+</html>
