@@ -12,7 +12,7 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="{{theme.files}}/bootstrap-1.2.0.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 
     <!-- Le fav and touch icons - - >
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -28,12 +28,12 @@
     </style>
   </head>
 
-  <body style="padding-top: 40px;">
+  <body style="padding-top:70px;">
 
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <h3><a href="/">{{store.name}}</a></h3>
+          <h3><a href="/" style="white-space: nowrap; width:150px; overflow: hidden; text-overflow: ellipsis; border-right:1px solid #000;">{{store.name}}</a></h3>
           <ul class="nav">
             <li><a href="/cart/">Cart</a></li>
             <li><a href="/checkout/">Shipping</a></li>
@@ -49,14 +49,19 @@
 
     <div class="container">
 
+		<!--
 		<div class="hero-unit">
 			<h1>Payment / {{cart.totalprice | money_with_currency}}</h1>
-			<!-- p style="margin-top: 1em">Your Cart has {{cart.items.count}} Item/s, {{cart.totalprice | money_with_currency}}</p -->
+			<p style="margin-top: 1em">Your Cart has {{cart.items.count}} Item/s, {{cart.totalprice | money_with_currency}}</p>
 		</div>
-  	
+        -->
+
   		<div class="page-header">
-    		<h1>How would you like to pay?</h1>
+    		<!-- <h1>How would you like to pay?</h1> -->
+			<h1>Payment</h1>
+			<h2 style="margin-top:0; margin-bottom:1em;">Your Cart has {{cart.items.count}} Item/s, {{cart.totalprice | money_with_currency}}</h2>
   		</div>
+
   	
 		<section>
 			<div class="row">
