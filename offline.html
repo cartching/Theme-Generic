@@ -1,106 +1,56 @@
-<!--/
-	Cartching Theme | Generic
-    Copyright (c) Cartching, 2011
-    http://cartching.com
-/-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<head profile="http://purl.org/uF/2008/03/ http://purl.org/uF/hAtom/0.1/">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{page.title | html_encode}} | {{store | html_encode}}</title>
 
-<title>{{page.title | html_encode}} | {{store | html_encode}}</title>
+    <meta name="author" content="{{store.url}}" />
+    <meta name="keywords" content="{{page.keywords | html_encode}}" />
+    <meta name="description" content="{{page.description | html_encode}}" />
 
-<meta http-equiv="imagetoolbar" content="false" />
-<meta http-equiv="imagetoolbar" content="no" />
-<meta name="robots" content="index, follow" />
-<meta name="distribution" content="global" />
-<meta name="copyright" content="{{store | html_encode}}, {{store.url}}" />
-<meta name="author" content="{{store.url}}" />
-<meta name="keywords" content="{{page.keywords | html_encode}}" />
-<meta name="description" content="{{page.description | html_encode}}" />
+	<style type="text/css">
 
-<link rel="author" href="{{store.url}}" />
-<link rel="canonical" href="{{page.url}}" />
-<link rel="home" title="home" href="{{store.url}}" />
-<link rel="stylesheet" type="text/css" href="{{theme.files}}/theme.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="{{store.files}}/custom.css" media="screen" />
+		body{
+			margin: 0;
+			padding: 0;
+			font: 14px/180% Helvetica, Arial, Verdana, sans-serif;
+			color: #333;
+			background-color: #eee;
+		}
 
-<script type="text/javascript" src="http://cachedcommons.org/cache/jquery/1.4.2/javascripts/jquery-min.js"></script>
+		#wrapper{
+			margin: 0 auto;
+			padding: 60px 120px;
+			width: 600px;
+			margin-top: 100px;
+			background-color: #fff;
+			box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+			-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+			-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+		}
 
-<!-- #IF {{snippets.head-content}} -->
-{{snippets.head-content}}
-<!-- #ELSE -->
-    <!-- 
-        //	- Add a Snippet named "Head Content"
-        //	Example -
-	    //		<meta name="google-site-verification" content="" />
-    	//		<meta name="verify-v1" content="" />
-    -->
-<!-- #ENDIF -->
+		h1 {
+			font-size: 28px;
+			margin-bottom: 1em;
+		}
 
+		p {
+			font-size: 18px;
+		}
+		
+		p.hint { color: #999; font-size: 0.875em; }
+	</style>
 </head>
+<body>
+	<div id="wrapper">
 
-<body id="{{page.id}}" class="{{page.id}} {{page.template}}">
-
-
-<a name="top"></a>
-
-<div class="wrapper">
-
-
-    <div class="header_area">
-        <div id="header">
-        	<div class="container">                        
-                
-                <div id="logo">
-                    <h2><a href="{{store.url}}" title="{{store | html_encode}}">{{store | html_encode}}</a></h2>
-                    <!-- #IF {{page.description}} --><p>{{store.description | html_encode}}</p><!-- #ENDIF -->
-                </div>
-                    
-        	</div>
-        </div>
-    </div>
-
-
-    <div class="content_area">    
-		<div id="content" class="content">
     
-            <h1>Oh Bugger! We are Offline</h1>
-            <h4>Sorry for the inconvenience.</h4>
+        <h1>Oh Bugger! We are Offline</h1>
+        <h4>Sorry for the inconvenience.</h4>
 
-       </div>
-    </div>       
+        <p><a href="#" onclick="history.go(-1);">&laquo; Go Back</a> | <a href="http://cartching.com">Home Page</a></p>
 
-       
-
-	<div class="copyright_area">
-        <div id="copyright">
-        	<div class="container">
-
-                <div class="cartching">
-                <a href="http://cartching.com/" title="Make yourself a FREE website to sell your products, be up and running in 5 minutes!  Its quick and simple with secure online payments.  No lock-in contracts, No knowledge of web page design or website hosting required. Advanced features also available from $30/month.">Cartching</a>
-                </div>
-                
-                <div class="cite">
-                <p><cite><abbr>&copy;</abbr> {{store | html_encode}} {{now.year}}.</cite></p>
-                </div>
-
-			</div>
-        </div>
 	</div>
-
-   
-</div>
-
-<!-- #IF {{snippets.script-content}} -->
-{{snippets.script-content}}
-<!-- #ELSE -->
-    <!-- 
-        // - Add a Snippet named "Script Content"
-        // Like your Google Anayltics Code    
-    -->
-<!-- #ENDIF -->
-
 </body>
 </html>
